@@ -36,7 +36,7 @@ namespace DotNetCore_WebApi_OneToOneRelationShip.Controllers
 				try
 				{
 					dynamic resp = await _repo.AddAsync(newemployee);
-					
+
 					if (resp != null)
 					{
 						return Ok();
@@ -68,6 +68,20 @@ namespace DotNetCore_WebApi_OneToOneRelationShip.Controllers
 
 			}
 
+		}
+
+		[HttpGet("{Id}")]
+		public async Task<ActionResult<GetAllEmployeeDTO>> GetEmployee(int Id)
+		{
+			var emp = await _repo.GetAsync(Id);
+			if (emp != null)
+			{
+				return Ok(emp);
+			}
+			else
+			{
+				return BadRequest();
+			}
 		}
 	}
 }

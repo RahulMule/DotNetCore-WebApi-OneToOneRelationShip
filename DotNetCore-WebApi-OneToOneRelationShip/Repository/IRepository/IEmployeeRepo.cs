@@ -7,5 +7,6 @@ namespace DotNetCore_WebApi_OneToOneRelationShip.Repository.IRepository
 	{
 		Task<IEnumerable<GetAllEmployeeDTO>> GetAllAsync();
 		Task<IActionResult> AddAsync(Employee employee);
+		Task<GetAllEmployeeDTO> GetAsync(int Id);
 	}
 }

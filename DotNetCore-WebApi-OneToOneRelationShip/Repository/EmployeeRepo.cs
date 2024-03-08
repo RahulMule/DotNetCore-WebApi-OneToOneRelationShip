@@ -62,5 +62,32 @@ namespace DotNetCore_WebApi_OneToOneRelationShip.Repository
 				throw new Exception($"{ex.Message}", ex);
 			}
 		}
-	}
+
+		public async Task<GetAllEmployeeDTO>  GetAsync(int Id)
+		{
+			var emp = await _context.Employees.FindAsync(Id);
+			
+			if (emp == null)
+			{
+				return null;
+			}
+			else
+			{
+				var passport = await _context.Passport.FirstOrDefaultAsync(x => x.EmployeeId == Id);
+				return new GetAllEmployeeDTO()
+				{
+					FirstName = emp.FirstName,
+					LastName = emp.LastName,
+					PassportName = passport.PassportName,
+					PassportNumber = passport.PassportNumber,
+					EmployeeId = emp.Id
+				};
+			}
+				
+			}
+		}
+			
+			
+		
+	
 }
