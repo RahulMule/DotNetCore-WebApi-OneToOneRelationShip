@@ -85,7 +85,15 @@ namespace DotNetCore_WebApi_OneToOneRelationShip.Repository
 			}
 				
 			}
+
+		public async Task RemoveEmployee(int Id)
+		{
+			var emp = _context.Employees.Find(Id);
+			 _context.Employees.Remove(emp);
+			await _context.SaveChangesAsync();
+
 		}
+	}
 			
 			
 		

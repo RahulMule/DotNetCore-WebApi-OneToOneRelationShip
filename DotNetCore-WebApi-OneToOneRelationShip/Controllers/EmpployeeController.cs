@@ -83,5 +83,19 @@ namespace DotNetCore_WebApi_OneToOneRelationShip.Controllers
 				return BadRequest();
 			}
 		}
+
+		[HttpDelete("{Id}")]
+		public async Task<ActionResult> DeleteEmployee(int Id)
+		{
+			try
+			{
+				await _repo.RemoveEmployee(Id);
+				return Ok();
+			}
+			catch (Exception ex)
+			{
+				return BadRequest($"Could not delete {ex.Message}");
+			}
+		}
 	}
 }
